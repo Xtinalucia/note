@@ -4,17 +4,19 @@
 {% block content %}
 <h4>Please Login</h4>
 <form action="" method="post">
-    {{ login_form.csrf_token }}
+   
     <div class="form-group">
-        <fieldset>
-            {{ login_form.username.label }}
-            {{ login_form.username(class='form-control', placeholder='Username') }}
-        </fieldset>
-        <fieldset>
-            {{ login_form.password.label }}
-            {{ login_form.password(class='form-control', placeholder='Password') }}
-        </fieldset>
-    </div>
-    {{ login_form.submit(class='btn btn-light') }}
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Username" name="username">
+          </div>
+          
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Password" name="password">
+          </div>
+          
+          <div class="input-group mb-3">
+            
+            <button class="btn btn-secondary" type="submit">Login</button>
+          </div>
 </form>
 {% endblock content %}
