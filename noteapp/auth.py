@@ -2,32 +2,26 @@ from flask import Blueprint, render_template, request, flash,  redirect, url_for
 from flask import Flask, render_template, request
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import secure_filename
-# from config import Config
-# from flask_migrate import Migrate
 from flask_login import login_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 import os
 
-# flash,
 
-# app = Flask(__name__)
-# app.config.from_object(Config)
-
-# db = SQLAlchemy(app)
-# migrate= Migrate(app, db)
 
 auth = Blueprint('auth','config', __name__)
 
 @auth.route('/login', methods=['GET', 'POST']) 
 def login():
-    #  "<p>Login After Registering</p>"
     if request.method == "POST":
-        from .models import User
+        from .models import User, School, Jobs
         username = request.form["username"]
         password = request.form["password"]
+        school = request.form['school']
+        # document_name = request.form['document_name'] document_name=document_name,
+        # user_id = request.form['user_id'] user_id=user_id,
         print(username, password)
         
-        user = User.query.filter_by(username=username, password=password).first()
+        user = User.query.filter_by(school=school, username=username, password=password).first()
     
     
         if user:
@@ -47,17 +41,21 @@ def logout():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
-        from .models import User
+        from .models import User, School, Jobs
         from extensions import db
         from sqlalchemy.exc import InterfaceError #do i need this one?
         
         email = request.form['email']
         username = request.form['username']
         password = request.form['password']
-        
+        school = request.form['school']
+        # document_name = request.form['document_name'] document_name=document_name,
+        # user_id = request.form['user_id'] user_id=user_id,
+        print(username, password, school, email)
+        print('got to line 55')
         try:
         
-            user = User(email=email, password=password, username=username)
+            user = User(email=email, password=password, username=username, school=school)
             db.session.add(user)
             db.session.commit()
         except IntegrityError as e:
@@ -84,8 +82,11 @@ def my_notes():
             return redirect(request.url)
         if file:
             filename = secure_filename(file.filename)
+            f = request.files['file']
+            f.save(secure_filename(f.filename))
             file.save(os.path.join('noteapp/static/upload', filename))
-            return redirect(url_for('auth.my_account', name=filename))
+            # file.save(os.path.join('http://127.0.0.1:5000/', filename))
+            return redirect(url_for('auth.my_account', name=filename)) #go here after download
         # code to check if name exisits
     return '''
     <!doctype html>
@@ -96,12 +97,17 @@ def my_notes():
       <input type=submit value=Upload>
     </form>
     '''
-        
+    return 'file uploaded successfully'
     
     return render_template('my_notes.html')
        
      
-    
+ 
+@auth.route('/my_account')
+def my_account():
+    print("My Account To see the files after download complete")
+    return "<p>My Notes View posted or uploaded notes</p>"
+       
 
 
 
@@ -116,25 +122,6 @@ def my_notes():
 #       f = request.files['file']
 #       f.save(secure_filename(f.filename))
 #       return 'file uploaded successfully'
-
-
-
-
-
-
-@auth.route('/my_account')
-def my_account():
-    return "<p>My Account To see the </p>"
-
-
-
-
-
-
-
-
-
-
 
 
 
