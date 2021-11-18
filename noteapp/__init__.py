@@ -20,4 +20,4 @@ app.register_blueprint(notes, url_prefix='/')
 app.register_blueprint(auth, url_prefix='/auth')
     
 
-    
+from noteapp import auth, models

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash,  redirect, url_for
 from flask import Flask, render_template, request
 from sqlalchemy.exc import IntegrityError
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 # from config import Config
 # from flask_migrate import Migrate
 from flask_login import login_user, logout_user
@@ -84,8 +84,8 @@ def my_notes():
             return redirect(request.url)
         if file:
             filename = secure_filename(file.filename)
-            file.save(os.path.join('/Users/christinalucia/Desktop/shp/noteapp/static/upload', filename))
-            return redirect(url_for('download_file', name=filename))
+            file.save(os.path.join('noteapp/static/upload', filename))
+            return redirect(url_for('auth.my_account', name=filename))
         # code to check if name exisits
     return '''
     <!doctype html>
