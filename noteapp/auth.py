@@ -16,14 +16,14 @@ def login():
         from .models import User, School, Jobs
         username = request.form["username"]
         password = request.form["password"]
-        school = request.form['school']
+        school = request.form["school"]
         # document_name = request.form['document_name'] document_name=document_name,
         # user_id = request.form['user_id'] user_id=user_id,
         print(username, password)
         
         user = User.query.filter_by(school=school, username=username, password=password).first()
     
-    
+        print(user)
         if user:
             login_user(user)
             print("User Logged in")
