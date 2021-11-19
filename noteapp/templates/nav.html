@@ -14,36 +14,40 @@
         {% if current_user.is_authenticated %}
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-              <!-- done -->
+             
               <a class="nav-link active" aria-current="page" href={{url_for("notes.home")}}>Home</a>
           </li>
-          <!-- link for Update Must be Inserted __________________________ -->
+          
           <li class="nav-item">
             <a class="nav-link" href={{url_for("auth.my_account")}}>My Account</a>
           </li>
-          <!-- its good -->
+          
           <li class="nav-item">
             <a class="nav-link" href={{url_for("auth.my_notes")}}>Post Notes</a>
           </li>
         </ul>
         {% endif %}
         <ul class="navbar-nav ms-auto">
-          {% if current_user.is_authenticated %}
+        {% if current_user.is_authenticated %}
           <span class="nav-link">{{current_user.username}}</span>
           <li class="nav-item">
-          <a class="nav-link" href={{url_for("auth.logout")}}>Logout</a>
-        </li>
-        
+             <a class="nav-link" href={{url_for("auth.logout")}}>Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={{url_for("auth.my_account")}}>My Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={{url_for("auth.update_info")}}>Update School</a>
+          </li>
         {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href={{url_for("auth.login")}}>Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href={{url_for("auth.my_account")}}>My Account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href={{url_for("auth.register")}}>Register</a>
-        </li>
+   
+          <li class="nav-item">
+            <a class="nav-link" href={{url_for("auth.login")}}>Login</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href={{url_for("auth.register")}}>Register</a>
+          </li>
        
         {% endif %}
 

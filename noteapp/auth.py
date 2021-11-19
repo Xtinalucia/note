@@ -175,11 +175,14 @@ def delete_doc(id):
     
 #     return render_template('update.html')
 
-@auth.route('/update/<int:id>', methods=['GET', 'POST'])
+@auth.route('/update/', methods=['GET', 'POST'])
 # @login_required
-def update_info(id):
+def update_info():
+    
+    user = User.query.get(current_user.id)
+    name_to_update = User.query.get(current_user.id)
     if request.method == "POST":
-        user = User.query.get(current_user.id)
+        # user = User.query.get(current_user.id) duplicate
         print(user)
         print("Update files here!! Auth.py Line183! !")
     # name_to_update = User.query.get(id) WRONG!!!This does not match the user print statement from line 182!!!!
@@ -187,28 +190,29 @@ def update_info(id):
         print(name_to_update)
     
         
-        # email = request.form['email']
-        # username = request.form['username']
-        # password = request.form['password']
-        # school = request.form['school']
+       # email = request.form['email']
+      #  username = request.form['username']
+        password = request.form['password']
+        school = request.form['school']
         
-        # name_to_update.email = email
-        # name_to_update.username = username
-        # name_to_update.password = password
-        # name_to_update.school = school
+       # name_to_update.email = email
+       # name_to_update.username = username
+        name_to_update.password = password
+        name_to_update.school = school
         print("Working!!!!! Auth.py Line191! !")
         # try:
+        db.session.add(name_to_update)
         db.session.commit()
         flash("Updates made")
         print("hello")
-        return render_template("update.html", name_to_update = name_to_update, id=id)
+        return render_template("update.html", name_to_update = name_to_update, id=current_user.id)
         
         # except:
         #     flash("This didnt work")
         #     return render_template("update.html", name_to_update = name_to_update, id=id)
     else:
         print("my name")
-        return render_template("update.html", name_to_update = name_to_update, id = id)
+        return render_template("update.html", name_to_update = name_to_update, id = current_user.id)
   
 # @auth.route('/upload')
 # def upload_file():

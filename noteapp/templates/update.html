@@ -16,10 +16,10 @@
 
 	<h1>Update Info:</h1>
 	<br/>
-<div class="shadow p-3 mb-5 bg-body rounded">
+<div class="shadow p-3 mb-5 bg-body rounded" style="width: 20rem">
     <!-- get the currently logged in user and update -->
-	<form action="/update/{{ name_to_update.id }}" method="POST"> 
-		<input type="text" nam="id" id="id" value="{{id}}">
+	<form method="POST"> 
+		<input type="text" style="width: 1.5rem" nam="id" id="id" value="{{id}}"><br><br>
         <div class="form-group">
             <div class="input-group mb-3" style="width: 17rem">
                 <input type="text" class="form-control" placeholder="Username" name="username">
@@ -34,7 +34,7 @@
           </div>
               <div class="input-group mb-3" style="width: 17rem">
                 
-                <button class="btn btn-secondary" type="Update">Login</button>
+                <button class="btn btn-secondary" type="Update">Update</button>
               </div>
    
 	</form>
