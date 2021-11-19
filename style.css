@@ -1,0 +1,13 @@
+body {
+    background-image: url("chairs.png");
+    background-color:rgb(30, 32, 31);
+    background-size: cover;
+    /* background-image: linear-gradient(black, grey, white); */
+} 
+.card {
+    border-radius: 0px 0px 100px 100px;
+    background-color:rgb(23, 26, 24);
+}
+/* .h5 {
+    border-radius: 0px 0px 100px 100px;
+} */
