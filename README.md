@@ -1,7 +1,5 @@
 ![NoteTaker App LC](https://user-images.githubusercontent.com/89708073/142676044-c6fe1105-8c5d-46d0-b084-9e5675e0c4cf.png)
-#
-
-Notetaker App: Never Miss Another Day Of Class Again.
+#Notetaker App: Never Miss Another Day Of Class Again.
 
 No Need for Social Media Exchange!
 
@@ -28,11 +26,7 @@ Future Features:
 - More dynamic ways of seraching for your classmates: School - Course - Professor - Day - Time
 
 
-
-
-
-
-Notetaker Prelim Tables:
+Notetaker Preliminary Tables:
 
 Primary KEY - NoteTakerID
 
@@ -42,8 +36,6 @@ Email
 Classes enrolled
 School enrolled
 Notes - upload, delete
-
-
 
 Customer
 
@@ -56,15 +48,12 @@ Class enrolled
 School enrolled
 Documents - view, delete 
 
-
 Schools
 
 Primary KEY - SchoolID
 
 U of A - Anthro101
 U of B - Bio101
-
-
 
 Jobs
 
