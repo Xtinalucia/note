@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+{% for doc in documents %}
+<br>
+<div class="card" style="width: 20rem" >
+    
+    <ul class="list-group" style="width: 20rem">
+        <h1><a href="/auth/my_account/{{ doc.id }}">{{ doc.document_name }}</a></h1>
+        <a class="btn btn-dark" href="/auth/delete/{{ doc.id }}" role="button">Delete</a>
+    </div>
+    
+    <br>
+{% else %}
+<p>You don't have any notes</p>
+{% endfor %}
+
+{% endblock %}

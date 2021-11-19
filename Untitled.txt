@@ -1,0 +1,68 @@
+Notetaker App:
+
+No Need for Social Media Exchange!
+
+Don't clog up your Socials/Phone
+Lecture - Lab - Section Component 
+12 classes a year
+
+Great for students who prefer to listen during class.
+Great for students who prefer to write during class.
+Great for Students with known or undiagnosed disabilities who need accommodations during lectures.
+Great for sickly Sara's.
+
+
+
+Future Features:
+
+Audio Recording/Live Streaming Capabilities
+Live Notetaking (Google Docs)
+Raise Hand  - NoteTaker asks question on your behalf. (Google Docs - Comments Section)
+School - Course - Professor - Day - Time
+
+
+
+
+
+
+Notetaker 
+
+Primary KEY - NoteTakerID
+
+Username 
+Password
+Email
+Classes enrolled
+School enrolled
+Notes - upload, delete
+
+
+
+Customer
+
+Primary KEY - CustomerID
+
+Username
+Password
+Email
+Class enrolled
+School enrolled
+Documents - view, delete 
+
+
+Schools
+
+Primary KEY - SchoolID
+
+U of A - Anthro101
+U of B - Bio101
+
+
+
+Jobs
+
+Primary KEY - JobID
+
+Pending
+Current
+Past

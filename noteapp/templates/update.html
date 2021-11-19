@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+	
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  {{ message }}
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+	
+{% endfor %}
+
+
+
+	<h1>Update Info:</h1>
+	<br/>
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <!-- get the currently logged in user and update -->
+	<form action="/update/{{ name_to_update.id }}" method="POST"> 
+		<input type="text" nam="id" id="id" value="{{id}}">
+        <div class="form-group">
+            <div class="input-group mb-3" style="width: 17rem">
+                <input type="text" class="form-control" placeholder="Username" name="username">
+              </div>
+              
+              <div class="input-group mb-3" style="width: 17rem">
+                <input type="password" class="form-control" placeholder="Password" name="password">
+              </div>
+              
+          <div class="input-group mb-3" style="width: 17rem">
+            <input type="text" class="form-control" placeholder="school" name="school">
+          </div>
+              <div class="input-group mb-3" style="width: 17rem">
+                
+                <button class="btn btn-secondary" type="Update">Login</button>
+              </div>
+   
+	</form>
+</div>
+
+
+
+ <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  Cannot Complete
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+	<h2>Who's Logged in:</h2>
+    <h2>id {{current_user.id}}</h2>
+    <h2>name_to_update {{name_to_update}}</h2>
+	 -->
+
+
+
+{% endblock %}

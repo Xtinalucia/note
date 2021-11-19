@@ -1,0 +1,91 @@
+Begin by CREATING a new FOLDER 
+Next in the Open Folder click on the final folder in the directory at the bottom
+Right Click and Select OPEN in new Terminal
+In the Terminal type code .
+
+Pip install flask
+Pip install flask-login
+Pip install flask-sqlalchemy
+
+
+
+
+export FLASK_APP=run.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- {% extends 'base.html' %}
+
+
+{% block title%} Sign Up{% endblock%}
+
+{% block content %}
+
+<form method='POST'>
+    <h1 align="center"> Sign Up Below:</h1>
+<div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" 
+    class="form-control" 
+    id="email" 
+    name="email" 
+    placeholder="email"/>
+</div>
+<div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" 
+    class="form-control" 
+    id="firstName" 
+    name="firstName" 
+    placeholder="firstName"/>
+</div>
+<div class="form-group">
+    <label for="Password">Password</label>
+    <input type="Password" 
+    class="form-control" 
+    id="Password" 
+    name="Password" 
+    placeholder="Password"/>
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock content %} -->
