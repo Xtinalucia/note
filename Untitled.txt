@@ -19,7 +19,7 @@ Audio Recording/Live Streaming Capabilities
 Live Notetaking (Google Docs)
 Raise Hand  - NoteTaker asks question on your behalf. (Google Docs - Comments Section)
 School - Course - Professor - Day - Time
-
+Change Schools/Courses in Register Login Update Logout
 
 
 

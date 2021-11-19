@@ -63,7 +63,7 @@ def register():
             db.session.commit()
         except IntegrityError as e:
             print(e)
-            print("Email Already exist")
+            print("Email Already exists")
         print("User is Created")
     
     return render_template("register.html")
@@ -107,11 +107,11 @@ def my_notes():
             
             return render_template('log.html',content=content,  mimetype='text/plain')
             
-            # file.save(os.path.join('noteapp/static/upload', filename))
-            # file.save(os.path.join('http://127.0.0.1:5000/', filename))
-            # return redirect(url_for('auth.my_account', name=filename)) #go here after download
-        # code to check if name exisits
-    # return '''
+            # file.save(os.path.join('noteapp/static/upload', filename))  NOO!
+            # file.save(os.path.join('http://127.0.0.1:5000/', filename))  NOO!
+            # return redirect(url_for('auth.my_account', name=filename)) #go here after download  NOO!
+        # code to check if name exisits NOO!
+    # return '''NOO!
     # <!doctype html>
     # <title>Upload new File</title>
     # <h1>Upload new File</h1>
@@ -124,7 +124,7 @@ def my_notes():
     
     return render_template('my_notes.html')
        
-#Read uploaded document now in the db 
+#Read uploaded document now in the db NOO!
 @auth.route('/my_account')
 def my_account():
     print("My Account To see the files after download complete")
@@ -145,7 +145,7 @@ def view_note(id):
            
            
            
-# How to Delete ------------ from PhonebookApp
+# How to Delete ------------ from PhonebookApp ----Here deletion of document
 @auth.route('/delete')
 def delete():
     print("delete files after download complete")
@@ -174,12 +174,12 @@ def delete_doc(id):
 #     user = User.query.get(current_user.id)
     
 #     return render_template('update.html')
-
+###########   How to Update  ################combo phonebook,register,delete,youtube codemy(JohnElder)
 @auth.route('/update/', methods=['GET', 'POST'])
 # @login_required
 def update_info():
     
-    user = User.query.get(current_user.id)
+    user = User.query.get(current_user.id)#grab data
     name_to_update = User.query.get(current_user.id)
     if request.method == "POST":
         # user = User.query.get(current_user.id) duplicate
@@ -190,21 +190,21 @@ def update_info():
         print(name_to_update)
     
         
-       # email = request.form['email']
-      #  username = request.form['username']
+       # email = request.form['email'] NO!!!!
+      #  username = request.form['username']  NO!!!!
         password = request.form['password']
         school = request.form['school']
         
-       # name_to_update.email = email
-       # name_to_update.username = username
+       # name_to_update.email = email   NO!!!!
+       # name_to_update.username = username   NO!!!!
         name_to_update.password = password
         name_to_update.school = school
         print("Working!!!!! Auth.py Line191! !")
-        # try:
-        db.session.add(name_to_update)
+        
+        db.session.add(name_to_update)#dend data to db
         db.session.commit()
         flash("Updates made")
-        print("hello")
+        print("hello")#where 2 view
         return render_template("update.html", name_to_update = name_to_update, id=current_user.id)
         
         # except:

@@ -58,7 +58,7 @@ class Document(db.Model, UserMixin):
     editors = relationship('User', secondary="link", back_populates="documents")
     
 
-class Link(db.Model, UserMixin):
+class Link(db.Model, UserMixin): #tie everything together and use relationships
     document_id = sa.Column(sa.Integer, sa.ForeignKey("document.id"), primary_key=True)
     user_id = sa.Column(sa.Integer, sa.ForeignKey("user.id"), primary_key=True)
        
