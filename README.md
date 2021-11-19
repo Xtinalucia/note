@@ -1,3 +1,4 @@
+![NoteTaker App LC](https://user-images.githubusercontent.com/89708073/142676044-c6fe1105-8c5d-46d0-b084-9e5675e0c4cf.png)
 #
 
 Notetaker App: Never Miss Another Day Of Class Again.
