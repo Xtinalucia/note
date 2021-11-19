@@ -44,3 +44,25 @@ print(s)
 
  
 
+<!-- {{ form.hidden_tag() }}
+
+
+		{{ form.username.label(class="form-label") }}
+
+		{{ form.username(class="form-control", value=name_to_update.username) }}
+		<br/>
+
+		{{ form.email.label(class="form-label") }}
+
+		{{ form.email(class="form-control", value=name_to_update.email) }}
+		<br/>
+		
+		{{ form.school.label(class="form-label") }}
+
+		{{ form.school(class="form-control", value=name_to_update.school) }}
+
+		
+
+		<br/>
+		
+		{{ form.submit(class="btn btn-secondary") }} -->

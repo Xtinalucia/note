@@ -7,8 +7,8 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='/upload/style.css') }}">
+
 <title>{% block title %} Home {% endblock %}</title>
 </head>
 
@@ -20,6 +20,7 @@
 {% include 'messages.html' %}
 
 <div class="container">
+  <!-- <img src="{{url_for('static', filename='/upload/chairs.png') }}" /> -->
 {% include 'messages.html' %}  
 {% block content %}
     
@@ -44,9 +45,6 @@
       crossorigin="anonymous"
     ></script>
 <!-- for my image insert line 48 -->
-    <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='noteapp/static/upload/desk.png') }}"
-    ></script>
+    
   </body>
 </html>

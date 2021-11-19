@@ -42,7 +42,7 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("auth.login"))
-
+# How to Create
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
@@ -69,7 +69,7 @@ def register():
     return render_template("register.html")
 
 ##################   to upload a file/s     ###################
-#
+#FROM DOCUMENTATION
 #https://flask.palletsprojects.com/en/2.0.x/patterns/fileuploads/ -----Uploading
 @auth.route('/my_notes', methods=['GET','POST'])
 def my_notes():
@@ -93,7 +93,7 @@ def my_notes():
                 
             # Create document
             doc = Document(document_name=filename, text=content)  
-            # Add current user as editor
+            # Add current user as editor connecting thru db relationships
             doc.editors.append(User.query.get(current_user.id))
             
             # See if we got another editor add it
@@ -124,8 +124,7 @@ def my_notes():
     
     return render_template('my_notes.html')
        
-     
- 
+#Read uploaded document now in the db 
 @auth.route('/my_account')
 def my_account():
     print("My Account To see the files after download complete")
@@ -144,10 +143,73 @@ def view_note(id):
     
     return render_template("note.html", note=doc)
            
+           
+           
+# How to Delete ------------ from PhonebookApp
+@auth.route('/delete')
+def delete():
+    print("delete files after download complete")
+    user = User.query.get(current_user.id)
+    doc = user.documents[0] if len(user.documents) > 0 else False
+    
+    return render_template('delete.html', documents=user.documents)
+    return "<p>My Notes View posted or uploaded notes</p>"
+
+@auth.route('/delete/<int:id>',methods=['GET','POST'])
+def delete_doc(id):
+    doc = Document.query.get(id)#find the entry by id
+    print(doc)
+    print("How did i get here? Auth.py line 162")
+    if not doc is None:#if found
+        db.session.delete(doc)#delete entire entry
+        db.session.commit()#commit
+        
+    return redirect("/auth/my_account")#refresh the page/#go bk to home page
 
 
+# How to Update ----- phonebook + codemy
+# @auth.route('/update')
+# def update():
+#     print("delete files after download complete")
+#     user = User.query.get(current_user.id)
+    
+#     return render_template('update.html')
 
-
+@auth.route('/update/<int:id>', methods=['GET', 'POST'])
+# @login_required
+def update_info(id):
+    if request.method == "POST":
+        user = User.query.get(current_user.id)
+        print(user)
+        print("Update files here!! Auth.py Line183! !")
+    # name_to_update = User.query.get(id) WRONG!!!This does not match the user print statement from line 182!!!!
+        name_to_update = User.query.get(current_user.id)
+        print(name_to_update)
+    
+        
+        # email = request.form['email']
+        # username = request.form['username']
+        # password = request.form['password']
+        # school = request.form['school']
+        
+        # name_to_update.email = email
+        # name_to_update.username = username
+        # name_to_update.password = password
+        # name_to_update.school = school
+        print("Working!!!!! Auth.py Line191! !")
+        # try:
+        db.session.commit()
+        flash("Updates made")
+        print("hello")
+        return render_template("update.html", name_to_update = name_to_update, id=id)
+        
+        # except:
+        #     flash("This didnt work")
+        #     return render_template("update.html", name_to_update = name_to_update, id=id)
+    else:
+        print("my name")
+        return render_template("update.html", name_to_update = name_to_update, id = id)
+  
 # @auth.route('/upload')
 # def upload_file():
 #    return render_template('upload.html')
@@ -157,7 +219,7 @@ def view_note(id):
 #    if request.method == 'POST':
 #       f = request.files['file']
 #       f.save(secure_filename(f.filename))
-#       return 'file uploaded successfully'
+#       return 'ed successfully'
 
 
 

@@ -4,7 +4,17 @@
 
 {% block content %}
 {% for doc in documents %}
-<h1><a href="/auth/my_account/{{ doc.id }}">{{ doc.document_name }}</a></h1>
+<br>
+<div class="card" style="width: 77rem; color: darkgrey">
+<center>
+    <ul class="list-group" style="width: 20rem; color: darkgrey">
+        <center>
+        <h1 class='' style="color: darkgrey";><a class='' style="color: darkgrey"; href="/auth/my_account/{{ doc.id }}">{{ doc.document_name }}</a></h1></center>
+        <a class="btn btn-dark" href="/auth/delete/{{ doc.id }}" role="button">Delete</a>
+    </center>
+    </div>
+    
+    <br>
 {% else %}
 <p>You don't have any notes</p>
 {% endfor %}
