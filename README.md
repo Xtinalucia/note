@@ -1,4 +1,7 @@
-![NoteTaker App LC](https://user-images.githubusercontent.com/89708073/142676044-c6fe1105-8c5d-46d0-b084-9e5675e0c4cf.png)
+![NoteTaker App LC](https://user-images.githubusercontent.com/89708073/142682993-16cfef33-2a76-4707-8ee9-c22027a64156.png)
+<img width="1426" alt="NoteTaker1" src="https://user-images.githubusercontent.com/89708073/142683018-a069f266-c47d-4e17-a009-a9de8d5d73e5.png">
+<img width="1436" alt="NoteTaker2" src="https://user-images.githubusercontent.com/89708073/142683042-365b4484-f410-4187-8cc5-e18205f5ca82.png">
+<img width="1435" alt="NoteTaker3" src="https://user-images.githubusercontent.com/89708073/142683057-077e58bb-6575-4c4d-84b4-cb4ff3cb5e80.png">
 #Notetaker App: Never Miss Another Day Of Class Again.
 
 No Need for Social Media Exchange!
