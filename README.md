@@ -25,6 +25,7 @@ Future Features:
 - Raise Hand  - NoteTaker asks question on your behalf (Google Docs - Comments Section)
 - More dynamic ways of seraching for your classmates: School - Course - Professor - Day - Time
 
+Last Update 19Nov2021
 
 Notetaker Preliminary Tables:
 
@@ -62,4 +63,5 @@ Primary KEY - JobID
 Pending
 Current
 Past
-                                                                                                                  19Nov2021 1241p
+
+Completed:19Nov2021 1241p
