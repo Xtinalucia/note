@@ -2,9 +2,14 @@ from flask import Blueprint, render_template, request, flash,  redirect, url_for
 from flask import Flask, render_template, request
 from sqlalchemy.exc import IntegrityError
 from werkzeug.utils import secure_filename
-from flask_login import login_user, logout_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 import os
+
+from .models import User, School, Jobs, Document, Link
+from extensions import db
+from sqlalchemy.exc import InterfaceError #do i need this one?
 
 
 
@@ -13,7 +18,6 @@ auth = Blueprint('auth','config', __name__)
 @auth.route('/login', methods=['GET', 'POST']) 
 def login():
     if request.method == "POST":
-        from .models import User, School, Jobs
         username = request.form["username"]
         password = request.form["password"]
         school = request.form["school"]
@@ -21,13 +25,14 @@ def login():
         # user_id = request.form['user_id'] user_id=user_id,
         print(username, password)
         
-        user = User.query.filter_by(school=school, username=username, password=password).first()
-    
+        user = User.query.filter_by(school=school, username=username).first()
+        # user = User.query.get(username)
         print(user)
         if user:
-            login_user(user)
-            print("User Logged in")
-            return redirect(url_for("notes.home"))
+            if check_password_hash(user.password, password):
+                login_user(user)
+                print("User Logged in")
+                return redirect(url_for("notes.home"))
         else:
             print("Something went wrong")
     
@@ -41,9 +46,7 @@ def logout():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
-        from .models import User, School, Jobs
-        from extensions import db
-        from sqlalchemy.exc import InterfaceError #do i need this one?
+        
         
         email = request.form['email']
         username = request.form['username']
@@ -85,19 +88,39 @@ def my_notes():
             f = request.files['file']
             f.save(secure_filename(f.filename))
             file.save(os.path.join('noteapp/static/upload', filename))
+            with open(filename, "r") as f:
+                content = f.read()
+                
+            # Create document
+            doc = Document(document_name=filename, text=content)  
+            # Add current user as editor
+            doc.editors.append(User.query.get(current_user.id))
+            
+            # See if we got another editor add it
+            editors = User.query.filter_by(username=request.form['editor']).all()
+            if len(editors):
+                doc.editors.append(editors[0])
+           
+            # Save changes
+            db.session.add(doc)
+            db.session.commit()
+            
+            return render_template('log.html',content=content,  mimetype='text/plain')
+            
+            # file.save(os.path.join('noteapp/static/upload', filename))
             # file.save(os.path.join('http://127.0.0.1:5000/', filename))
-            return redirect(url_for('auth.my_account', name=filename)) #go here after download
+            # return redirect(url_for('auth.my_account', name=filename)) #go here after download
         # code to check if name exisits
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
-    return 'file uploaded successfully'
+    # return '''
+    # <!doctype html>
+    # <title>Upload new File</title>
+    # <h1>Upload new File</h1>
+    # <form method=post enctype=multipart/form-data>
+    #   <input type=file name=file>
+    #   <input type=submit value=Upload>
+    # </form>
+    # '''
+    # return 'file uploaded successfully'
     
     return render_template('my_notes.html')
        
@@ -106,8 +129,21 @@ def my_notes():
 @auth.route('/my_account')
 def my_account():
     print("My Account To see the files after download complete")
+    user = User.query.get(current_user.id)
+    doc = user.documents[0] if len(user.documents) > 0 else False
+    
+    return render_template('my_account.html', documents=user.documents)
     return "<p>My Notes View posted or uploaded notes</p>"
-       
+
+@auth.route('/my_account/<int:id>', methods=['GET','POST'])
+def view_note(id):
+    if request.method == "POST":
+        return redirect("auth/my_account")
+    
+    doc = Document.query.get(id)
+    
+    return render_template("note.html", note=doc)
+           
 
 
 

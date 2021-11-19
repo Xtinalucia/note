@@ -1,14 +1,12 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
 
 {% block content %}
+{% for doc in documents %}
+<h1><a href="/auth/my_account/{{ doc.id }}">{{ doc.document_name }}</a></h1>
+{% else %}
+<p>You don't have any notes</p>
+{% endfor %}
 
-<div class="card">
-    <div class="card-header">
-        <h4 class='text-dark'>Here's Your Account</h4>
-       
-
-    </div>
-    
-  </div>
-
-{% endblock content %}
+{% endblock %}

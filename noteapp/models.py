@@ -5,6 +5,9 @@ import sqlalchemy as sa
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlalchemy.orm import declarative_base, relationship
+
+Base = declarative_base()
 
 # Lucid Chart: https://lucid.app/lucidchart/0fc2daf9-4561-4c02-9943-4d8ec666119d/edit?invitationId=inv_ac20fa1b-b93d-4fb0-8ab9-03b78de1b456&page=0_0#
 
@@ -25,6 +28,7 @@ class User(db.Model, UserMixin):
     password = sa.Column(sa.String(128))
     school = sa.Column(sa.Integer, sa.ForeignKey('school.id'))
     document_name = sa.Column(sa.String(100))
+    documents = relationship('Document', secondary="link", back_populates="editors")
     
     
     def __init__(self, username, email, password, school):
@@ -47,7 +51,16 @@ class Jobs(db.Model, UserMixin):
     date_created = sa.Column(db.DateTime, nullable=False, default=datetime.utcnow )
     date_complete = sa.Column(sa.TIMESTAMP)
     
- 
+class Document(db.Model, UserMixin):
+    id = sa.Column(sa.Integer, primary_key=True)
+    document_name = sa.Column(sa.String(100))
+    text = sa.Column(sa.String(10000))
+    editors = relationship('User', secondary="link", back_populates="documents")
+    
+
+class Link(db.Model, UserMixin):
+    document_id = sa.Column(sa.Integer, sa.ForeignKey("document.id"), primary_key=True)
+    user_id = sa.Column(sa.Integer, sa.ForeignKey("user.id"), primary_key=True)
        
 # @login_manager.user_loader
 # def load_user(user_id):
